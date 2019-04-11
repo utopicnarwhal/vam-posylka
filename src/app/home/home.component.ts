@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeadService } from '../services/lead-service.service';
+import { LeadService } from '../services/lead.service';
 import { Lead } from '../models/lead';
 
 @Component({
@@ -9,7 +9,16 @@ import { Lead } from '../models/lead';
 })
 export class HomeComponent implements OnInit {
   leads: Lead[];
-  displayedColumns: string[] = ['name', 'description'];
+  displayedColumns: string[] = [
+    'id',
+    'recipient',
+    'sender',
+    'order_date',
+    'delivery_date',
+    'price',
+    'courier',
+    'transport'
+  ];
 
   nameForAdd = '';
   descriptionForAdd = '';
@@ -17,15 +26,12 @@ export class HomeComponent implements OnInit {
   constructor(private leadService: LeadService) { }
 
   ngOnInit() {
-    this.leadService.getLeads().subscribe((leads) => this.leads = leads);
+    this.leadService.getLeads().subscribe((leads) => {
+        return this.leads = leads;
+    });
   }
 
   public addLead() {
-    const lead = {
-      name: this.nameForAdd,
-      description: this.descriptionForAdd
-    };
-    this.leadService.addLead(lead);
     this.nameForAdd = '';
     this.descriptionForAdd = '';
   }

@@ -9,7 +9,6 @@ import { environment } from '../environments/environment';
 import { MatToolbarModule, MatTableModule, MatFormFieldModule, MatInputModule,
   MatButtonModule, MatIconModule } from '@angular/material';
 import { HomeComponent } from './home/home.component';
-import { LeadService } from './services/lead-service.service';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -31,7 +30,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
   ],
-  providers: [LeadService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
