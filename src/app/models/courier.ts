@@ -4,8 +4,8 @@ export interface Courier {
     lastname?: string;
     middlename?: string;
     passport_number?: string;
-    birthdate?: Date;
-    employment_date?: Date;
+    birthdate?: firebase.firestore.Timestamp;
+    employment_date?: firebase.firestore.Timestamp;
     the_beginning_of_the_working_day?: string;
     end_of_work_day?: string;
     city?: string;

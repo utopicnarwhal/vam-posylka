@@ -1,21 +1,21 @@
-<h1>Заказы:</h1>
+<h1>Курьеры:</h1>
 <h2 *ngIf="!leads || !leads.length">Заказов пока что нет(</h2>
-<mat-table [dataSource]="leads" [hidden]="!leads || !leads.length">
-  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+<mat-table [dataSource]="couriers" [hidden]="!leads || !leads.length">
+  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumnsCourier">
     <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
     <mat-cell *matCellDef="let lead"> {{lead[column]}} </mat-cell>
   </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-header-row *matHeaderRowDef="displayedColumnsCourier"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumnsCourier;"></mat-row>
 </mat-table>
 
 <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <mat-label>Название заказа</mat-label>
+    <mat-label>Фамилия</mat-label>
     <input matInput [(ngModel)]="nameForAdd">
 </mat-form-field>
 <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <mat-label>Описание</mat-label>
+    <mat-label>Имя</mat-label>
     <input matInput [(ngModel)]="descriptionForAdd">
 </mat-form-field>
-<button type="button" mat-raised-button color="primary" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" (click)="addLead()">Добавить заказ</button>
+<button type="button" mat-raised-button color="primary" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" (click)="addLead()">Добавить</button>

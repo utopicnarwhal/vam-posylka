@@ -4,8 +4,8 @@ export interface Lead {
     id?: string;
     recipient?: DocumentReference;
     sender?: DocumentReference;
-    order_date?: Date;
-    delivery_date?: Date;
+    order_date?: firebase.firestore.Timestamp;
+    delivery_date?: firebase.firestore.Timestamp;
     price?: number;
     courier?: DocumentReference;
     transport?: DocumentReference;
