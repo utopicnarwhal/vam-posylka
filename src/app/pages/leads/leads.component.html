@@ -1,0 +1,43 @@
+<h1>Заказы:</h1>
+<h2 *ngIf="leads && !leads.length">У вас нет заказов</h2>
+<mat-spinner [diameter]="40" *ngIf="!leads"></mat-spinner>
+<mat-table [dataSource]="leads" [hidden]="!leads || !leads.length">
+  <ng-container matColumnDef="recipient">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('recipient')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{(element.recipient | refDoc | async)?.lastname}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="sender">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('sender')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{(element.sender | refDoc | async)?.lastname}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="order_date">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('order_date')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.order_date.seconds * 1000 | date:'dd.MM.yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delivery_date">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('delivery_date')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.delivery_date.seconds * 1000 | date:'dd.MM.yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('price')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.price}}р. </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="courier">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('courier')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{(element.courier | refDoc | async)?.lastname}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="transport">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('transport')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{(element.transport | refDoc | async)?.transport_number}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>

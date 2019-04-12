@@ -1,0 +1,58 @@
+<h1>Отправители:</h1>
+<h2 *ngIf="senders && !senders.length">У вас нет отправителей</h2>
+<mat-spinner [diameter]="40" *ngIf="!senders"></mat-spinner>
+<mat-table [dataSource]="senders" [hidden]="!senders || !senders.length">
+  <ng-container matColumnDef="firstname">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('firstname')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.firstname}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('lastname')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.lastname}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="middlename">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('middlename')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.middlename}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="birthdate">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('birthdate')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.birthdate.seconds * 1000 | date:'dd.MM.yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="postcode">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('postcode')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.postcode}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="city">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('city')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="street">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('street')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.street}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="house">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('house')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.house}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="appartment">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('appartment')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.appartment}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="mobilephone">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('mobilephone')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> +{{element.mobilephone}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>

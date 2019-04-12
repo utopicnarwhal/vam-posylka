@@ -1,0 +1,28 @@
+<h1>Транспорт:</h1>
+<h2 *ngIf="transports && !transports.length">У вас нет транспорта</h2>
+<mat-spinner [diameter]="40" *ngIf="!transports"></mat-spinner>
+<mat-table [dataSource]="transports" [hidden]="!transports || !transports.length">
+  <ng-container matColumnDef="transport_number">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('transport_number')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.transport_number}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="model">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('model')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.model}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="registration_date">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('registration_date')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.registration_date.seconds * 1000 | date:'dd.MM.yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="color">
+    <mat-header-cell *matHeaderCellDef> {{translateTableHeader('color')}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.color}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>

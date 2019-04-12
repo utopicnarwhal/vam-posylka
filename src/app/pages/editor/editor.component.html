@@ -1,0 +1,76 @@
+<h1 *ngIf="!data" mat-dialog-title>
+    Создание нового элемента
+</h1>
+<div *ngIf="data && data.type" [ngSwitch]="data.type">
+    <div *ngSwitchCase="'Courier'">
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Фамилия</mat-label>
+            <input matInput [(ngModel)]="data.values['lastname']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['firstname']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['middlename']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['passport_number']">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Дата рождения</mat-label>
+            <input matInput [matDatepicker]="birthdate" [ngModel]="data.values['birthdate']">
+            <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+            <mat-datepicker #birthdate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['employment_date']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['the_beginning_of_the_working_day']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['end_of_work_day']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['city']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['street']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['house']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['appartment']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['mobilephone']" type="number">
+        </mat-form-field>
+    </div>
+    <div *ngSwitchCase="'Lead'">
+
+    </div>
+    <div *ngSwitchCase="'Recipient'">
+
+    </div>
+    <div *ngSwitchCase="'Sender'">
+
+    </div>
+    <div *ngSwitchCase="'Transport'">
+
+    </div>
+</div>
+<button type="button" mat-raised-button color="primary" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" (click)="submit()">
+    {{isNew ? 'Добавить' : 'Изменить'}}
+</button> 
