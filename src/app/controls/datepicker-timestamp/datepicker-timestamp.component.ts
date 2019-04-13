@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, Input, forwardRef, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NgModel, ControlValueAccessor } from '@angular/forms';
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { firestore } from 'firebase/app';
 
 @Component({
     selector: 'app-datepicker-timestamp',
@@ -10,9 +11,11 @@ import { NG_VALUE_ACCESSOR, NgModel, ControlValueAccessor } from '@angular/forms
     ]
 })
 export class DatepickerTimestampComponent implements ControlValueAccessor, OnInit {
-    @Input() label: string;
-    @Output() change = new EventEmitter<firebase.firestore.Timestamp>();
 
+    @Input() id: string;
+    @Input() label: string;
+
+    public _onChange: (_: any) => void;
     public dateValue: Date;
 
     constructor() { }
@@ -20,12 +23,33 @@ export class DatepickerTimestampComponent implements ControlValueAccessor, OnIni
     ngOnInit() {
     }
 
-    writeValue(val: Date): void {
+    writeValue(val: firestore.Timestamp): void {
+        if (val) {
+            try {
+                this.dateValue = val.toDate();
+            } catch {
+                this.dateValue = new Date();
+            }
+        }
     }
 
-    registerOnChange(fn: any): void {}
+    onChange($event) {
+        try {
+            if (!this.dateValue) {
+                return;
+            }
+            var timestamp = new firestore.Timestamp(this.dateValue.getTime() / 1000, 0);
+            this._onChange(timestamp);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
-    registerOnTouched(fn: any): void {}
+    registerOnChange(fn: (_: any) => void): void {
+      this._onChange = fn;
+    }
 
-    setDisabledState?(isDisabled: boolean): void {}
+    registerOnTouched(fn: any): void {
+
+    }
 }

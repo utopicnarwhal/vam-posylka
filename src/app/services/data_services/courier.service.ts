@@ -12,7 +12,7 @@ export class CourierService {
   couriers: Observable<Courier[]>;
 
   constructor(private db: AngularFirestore) {
-    this.courierCollection = this.db.collection<Courier>('couriers', ref => ref.orderBy('employment_date'));
+    this.courierCollection = this.db.collection<Courier>('couriers');
     this.couriers = this.courierCollection.snapshotChanges().pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as Courier;
@@ -30,7 +30,11 @@ export class CourierService {
     this.courierCollection.add(courier);
   }
 
+  public updateCourier(courier: Courier) {
+    this.db.doc('couriers/' + courier.id).update(courier);
+  }
+
   public deleteCourier(courier: Courier) {
-    this.courierCollection.doc('couriers/' + courier.id);
+    this.db.doc('couriers/' + courier.id).delete();
   }
 }

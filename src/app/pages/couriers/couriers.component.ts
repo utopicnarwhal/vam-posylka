@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class CouriersComponent implements OnInit, OnDestroy {
     couriers: Courier[];
-    subscription: Subscription;
+    subscriptions: Subscription[] = [];
 
     displayedColumns: string[] = [
         'firstname',
@@ -29,7 +29,7 @@ export class CouriersComponent implements OnInit, OnDestroy {
         'house',
         'appartment',
         'mobilephone',
-        'edit'
+        'edit',
     ];
 
     constructor(
@@ -38,13 +38,17 @@ export class CouriersComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.subscription = this.courierService.getCouriers().subscribe((couriers) => {
-            return this.couriers = couriers;
-        });
+        this.subscriptions.push(
+            this.courierService.getCouriers().subscribe((couriers) => {
+                return this.couriers = couriers;
+            })
+        );
     }
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        this.subscriptions.forEach(subscription => {
+            subscription.unsubscribe();
+        });
     }
 
     translateTableHeader(engTitle: string) {
@@ -52,6 +56,21 @@ export class CouriersComponent implements OnInit, OnDestroy {
     }
 
     openEditor(courier: Courier = null) {
-        this.dialog.open(EditorComponent, { data: { values: courier, type: 'Courier' } });
+        this.subscriptions.push(
+            this.dialog.open(EditorComponent, { data: { values: courier, type: 'Courier' } }).afterClosed().subscribe((response) => {
+                if (!response || !response.data) {
+                    return;
+                }
+                if (response.delete) {
+                    this.courierService.deleteCourier(response.data);
+                    return;
+                }
+                if (response.data.id) {
+                    this.courierService.updateCourier(response.data);
+                    return;
+                }
+                this.courierService.addCourier(response.data);
+            })
+        );
     }
 }

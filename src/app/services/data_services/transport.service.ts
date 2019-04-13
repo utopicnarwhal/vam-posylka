@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Transport } from '../../models/transport';
 import { map } from 'rxjs/operators';
 
@@ -8,25 +8,33 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TransportService {
-    transportCollection: AngularFirestoreCollection<Transport>;
-    transports: Observable<Transport[]>;
+  transportCollection: AngularFirestoreCollection<Transport>;
+  transports: Observable<Transport[]>;
 
-    constructor(private db: AngularFirestore) {
-      this.transportCollection = this.db.collection<Transport>('transports', ref => ref.orderBy('registration_date'));
-      this.transports = this.transportCollection.snapshotChanges().pipe(
-          map(actions => actions.map(a => {
-            const data = a.payload.doc.data() as Transport;
-            const id = a.payload.doc.id;
-            return { id, ...data };
-          }))
-      );
-    }
+  constructor(private db: AngularFirestore) {
+    this.transportCollection = this.db.collection<Transport>('transports');
+    this.transports = this.transportCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Transport;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+  }
 
-    public getTransports() {
-      return this.transports;
-    }
+  public getTransports() {
+    return this.transports;
+  }
 
-    public addTransport(transport: Transport) {
-      this.transportCollection.add(transport);
-    }
+  public addTransport(transport: Transport) {
+    this.transportCollection.add(transport);
+  }
+
+  public updateTransport(transport: Transport) {
+    this.db.doc('transports/' + transport.id).update(transport);
+  }
+
+  public deleteTransport(transport: Transport) {
+    this.db.doc('transports/' + transport.id).delete();
+  }
 }

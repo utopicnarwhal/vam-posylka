@@ -8,25 +8,33 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SenderService {
-    senderCollection: AngularFirestoreCollection<Sender>;
-    senders: Observable<Sender[]>;
+  senderCollection: AngularFirestoreCollection<Sender>;
+  senders: Observable<Sender[]>;
 
-    constructor(private db: AngularFirestore) {
-      this.senderCollection = this.db.collection<Sender>('senders', ref => ref.orderBy('lastname'));
-      this.senders = this.senderCollection.snapshotChanges().pipe(
-          map(actions => actions.map(a => {
-            const data = a.payload.doc.data() as Sender;
-            const id = a.payload.doc.id;
-            return { id, ...data };
-          }))
-      );
-    }
+  constructor(private db: AngularFirestore) {
+    this.senderCollection = this.db.collection<Sender>('senders');
+    this.senders = this.senderCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Sender;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+  }
 
-    public getSenders() {
-      return this.senders;
-    }
+  public getSenders() {
+    return this.senders;
+  }
 
-    public addSender(sender: Sender) {
-      this.senderCollection.add(sender);
-    }
+  public addSender(sender: Sender) {
+    this.senderCollection.add(sender);
+  }
+
+  public updateSender(sender: Sender) {
+    this.db.doc('senders/' + sender.id).update(sender);
+  }
+
+  public deleteSender(sender: Sender) {
+    this.db.doc('senders/' + sender.id).delete();
+  }
 }

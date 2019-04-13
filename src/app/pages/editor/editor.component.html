@@ -12,65 +12,164 @@
             <input matInput [(ngModel)]="data.values['firstname']">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Отчество</mat-label>
             <input matInput [(ngModel)]="data.values['middlename']">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Номер паспорта</mat-label>
             <input matInput [(ngModel)]="data.values['passport_number']">
         </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Дата рождения</mat-label>
-            <input matInput [matDatepicker]="birthdate" [ngModel]="data.values['birthdate']">
-            <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
-            <mat-datepicker #birthdate></mat-datepicker>
-        </mat-form-field>
+        <app-datepicker-timestamp id="birthdate" label="Дата рождения" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" [(ngModel)]="data.values['birthdate']">
+        </app-datepicker-timestamp>
+        <app-datepicker-timestamp id="employment_date" label="Дата приёма на работу" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" [(ngModel)]="data.values['employment_date']">
+        </app-datepicker-timestamp>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
-            <input matInput [(ngModel)]="data.values['employment_date']">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Начало рабочего дня</mat-label>
             <input matInput [(ngModel)]="data.values['the_beginning_of_the_working_day']">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Конец рабочего дня</mat-label>
             <input matInput [(ngModel)]="data.values['end_of_work_day']">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Город</mat-label>
             <input matInput [(ngModel)]="data.values['city']">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Улица</mat-label>
             <input matInput [(ngModel)]="data.values['street']">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Дом</mat-label>
             <input matInput [(ngModel)]="data.values['house']" type="number">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Квартира</mat-label>
             <input matInput [(ngModel)]="data.values['appartment']" type="number">
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <mat-label>Имя</mat-label>
+            <mat-label>Телефон</mat-label>
             <input matInput [(ngModel)]="data.values['mobilephone']" type="number">
         </mat-form-field>
     </div>
-    <div *ngSwitchCase="'Lead'">
-
-    </div>
     <div *ngSwitchCase="'Recipient'">
-
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Фамилия</mat-label>
+            <input matInput [(ngModel)]="data.values['lastname']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['firstname']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Отчество</mat-label>
+            <input matInput [(ngModel)]="data.values['middlename']">
+        </mat-form-field>
+        <app-datepicker-timestamp id="birthdate" label="Дата рождения" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" [(ngModel)]="data.values['birthdate']">
+        </app-datepicker-timestamp>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Индекс</mat-label>
+            <input matInput [(ngModel)]="data.values['postcode']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Город</mat-label>
+            <input matInput [(ngModel)]="data.values['city']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Улица</mat-label>
+            <input matInput [(ngModel)]="data.values['street']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Дом</mat-label>
+            <input matInput [(ngModel)]="data.values['house']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Квартира</mat-label>
+            <input matInput [(ngModel)]="data.values['appartment']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Телефон</mat-label>
+            <input matInput [(ngModel)]="data.values['mobilephone']" type="number">
+        </mat-form-field>
     </div>
     <div *ngSwitchCase="'Sender'">
-
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Фамилия</mat-label>
+            <input matInput [(ngModel)]="data.values['lastname']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="data.values['firstname']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Отчество</mat-label>
+            <input matInput [(ngModel)]="data.values['middlename']">
+        </mat-form-field>
+        <app-datepicker-timestamp id="birthdate" label="Дата рождения" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" [(ngModel)]="data.values['birthdate']">
+        </app-datepicker-timestamp>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Индекс</mat-label>
+            <input matInput [(ngModel)]="data.values['postcode']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Город</mat-label>
+            <input matInput [(ngModel)]="data.values['city']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Улица</mat-label>
+            <input matInput [(ngModel)]="data.values['street']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Дом</mat-label>
+            <input matInput [(ngModel)]="data.values['house']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Квартира</mat-label>
+            <input matInput [(ngModel)]="data.values['appartment']" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Телефон</mat-label>
+            <input matInput [(ngModel)]="data.values['mobilephone']" type="number">
+        </mat-form-field>
     </div>
     <div *ngSwitchCase="'Transport'">
-
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Номер машины</mat-label>
+            <input matInput [(ngModel)]="data.values['transport_number']">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Марка</mat-label>
+            <input matInput [(ngModel)]="data.values['model']">
+        </mat-form-field>
+        <app-datepicker-timestamp id="registration_date" label="Дата регистрации" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" [(ngModel)]="data.values['registration_date']">
+        </app-datepicker-timestamp>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Цвет</mat-label>
+            <input matInput [(ngModel)]="data.values['color']">
+        </mat-form-field>
+    </div>
+    <div *ngSwitchCase="'Lead'">
+        <app-fs-lookup-picker id="recipient" label="Получатель" class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+            [(ngModel)]="data.values['recipient']" collectionName="recipients"></app-fs-lookup-picker>
+        <app-fs-lookup-picker id="sender" label="Отправитель" class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+            [(ngModel)]="data.values['sender']" collectionName="senders"></app-fs-lookup-picker>
+        <app-datepicker-timestamp id="order_date" label="Дата заказа" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" [(ngModel)]="data.values['order_date']">
+        </app-datepicker-timestamp>
+        <app-datepicker-timestamp id="delivery_date" label="Дата доставки" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" [(ngModel)]="data.values['delivery_date']">
+        </app-datepicker-timestamp>
+        <mat-form-field appearance="outline" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <mat-label>Цена</mat-label>
+            <input matInput [(ngModel)]="data.values['price']" type="number">
+        </mat-form-field>
+        <app-fs-lookup-picker id="courier" label="Курьер" class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+            [(ngModel)]="data.values['courier']" collectionName="couriers"></app-fs-lookup-picker>
+        <app-fs-lookup-picker id="transport" label="Транспорт" class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+            [(ngModel)]="data.values['transport']" collectionName="transports"></app-fs-lookup-picker>
     </div>
 </div>
 <button type="button" mat-raised-button color="primary" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" (click)="submit()">
     {{isNew ? 'Добавить' : 'Изменить'}}
+</button> 
+<button type="button" *ngIf="!isNew" mat-raised-button color="accent" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" (click)="delete()">
+    {{'Удалить'}}
 </button> 

@@ -10,7 +10,7 @@ import {
     MatToolbarModule, MatTableModule, MatPaginatorModule, MatFormFieldModule,
     MatInputModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatPaginatorIntl,
     MatDialogModule, MatDatepickerModule, MatAutocompleteModule, MatDateFormats, MAT_DATE_LOCALE,
-    MAT_DATE_FORMATS, MatNativeDateModule
+    MAT_DATE_FORMATS, MatNativeDateModule, MatSelectModule,
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +22,7 @@ import { TransportComponent } from './pages/transport/transport.component';
 import { EditorComponent } from './pages/editor/editor.component';
 import { Observable } from 'rxjs';
 import { DatepickerTimestampComponent } from './controls/datepicker-timestamp/datepicker-timestamp.component';
+import { FsLookupPickerComponent } from './controls/fs-lookup-picker/fs-lookup-picker.component';
 
 export class CustomPaginator extends MatPaginatorIntl {
     constructor() {
@@ -76,6 +77,7 @@ const MY_FORMATS: MatDateFormats = {
         EditorComponent,
         RefDocPipe,
         DatepickerTimestampComponent,
+        FsLookupPickerComponent,
     ],
     imports: [
         BrowserModule,
@@ -94,6 +96,7 @@ const MY_FORMATS: MatDateFormats = {
         MatDatepickerModule,
         MatAutocompleteModule,
         MatNativeDateModule,
+        MatSelectModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
     ],

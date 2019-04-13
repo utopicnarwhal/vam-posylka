@@ -27,6 +27,10 @@ export class EditorComponent implements OnInit {
     }
 
     submit() {
-        this.dialogRef.close(this.data.values);
+        this.dialogRef.close({data: this.data.values, delete: false});
+    }
+
+    delete() {
+        this.dialogRef.close({data: this.data.values, delete: true});
     }
 }

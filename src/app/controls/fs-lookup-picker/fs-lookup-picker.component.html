@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline" *ngIf="collectionStream">
+  <mat-label>{{label}}</mat-label>
+  <mat-select [compareWith]="compareObjects" [(ngModel)]="selectedLookup" (selectionChange)="onChange($event)">
+    <mat-option *ngFor="let option of collectionStream | async" [value]="option">
+      <span>{{tranformDocumentToString(option)}}</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
