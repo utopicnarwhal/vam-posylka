@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Lead } from 'src/app/models/lead';
 import { LeadService } from 'src/app/services/data_services/lead.service';
 import { Translator } from 'src/app/utils/translator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-leads',
   templateUrl: './leads.component.html',
   styleUrls: ['./leads.component.css']
 })
-export class LeadsComponent implements OnInit {
+export class LeadsComponent implements OnInit, OnDestroy {
     leads: Lead[];
+    subscription: Subscription;
 
     displayedColumns: string[] = [
       'recipient',
@@ -28,6 +30,13 @@ export class LeadsComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.subscription = this.leadService.getLeads().subscribe((leads) => {
+        return this.leads = leads;
+      });
+    }
+
+    ngOnDestroy(): void {
+      this.subscription.unsubscribe();
     }
 
     translateTableHeader(engTitle: string) {

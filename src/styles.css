@@ -15,6 +15,27 @@ body {
     display: none !important;
 }
 
-.mat-form-field {
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
+.mat-cell, .mat-header-cell {
+    padding-right: 10px !important;
+}
+
+.mat-form-field:not(.mat-paginator-page-size-select) {
     min-width: 250px;
+}
+
+button.mat-raised-button {
+    margin: 15px;
+}
+
+.mat-dialog-container {
+    max-height: 100vh !important;
+}
+
+mat-spinner {
+    display: block;
+    margin: 15px auto;
 }

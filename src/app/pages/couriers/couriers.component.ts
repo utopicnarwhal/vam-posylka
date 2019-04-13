@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Courier } from 'src/app/models/courier';
 import { CourierService } from 'src/app/services/data_services/courier.service';
 import { Translator } from 'src/app/utils/translator';
 import { MatDialog } from '@angular/material';
 import { EditorComponent } from '../editor/editor.component';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-couriers',
     templateUrl: './couriers.component.html',
     styleUrls: ['./couriers.component.css']
 })
-export class CouriersComponent implements OnInit {
+export class CouriersComponent implements OnInit, OnDestroy {
     couriers: Courier[];
+    subscription: Subscription;
 
     displayedColumns: string[] = [
         'firstname',
@@ -26,19 +28,23 @@ export class CouriersComponent implements OnInit {
         'street',
         'house',
         'appartment',
-        'mobilephone'
+        'mobilephone',
+        'edit'
     ];
 
     constructor(
         private courierService: CourierService,
         private dialog: MatDialog
-    ) {
-        this.courierService.getCouriers().subscribe((couriers) => {
+    ) { }
+
+    ngOnInit() {
+        this.subscription = this.courierService.getCouriers().subscribe((couriers) => {
             return this.couriers = couriers;
         });
     }
 
-    ngOnInit() {
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     translateTableHeader(engTitle: string) {

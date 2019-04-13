@@ -29,4 +29,8 @@ export class CourierService {
   public addCourier(courier: Courier) {
     this.courierCollection.add(courier);
   }
+
+  public deleteCourier(courier: Courier) {
+    this.courierCollection.doc('couriers/' + courier.id);
+  }
 }
