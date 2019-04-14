@@ -5,6 +5,7 @@ import { TransportService } from 'src/app/services/data_services/transport.servi
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EditorComponent } from '../editor/editor.component';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-transport',
@@ -24,7 +25,8 @@ export class TransportComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private transportService: TransportService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    public afAuth: AngularFireAuth) {
   }
 
   ngOnInit() {

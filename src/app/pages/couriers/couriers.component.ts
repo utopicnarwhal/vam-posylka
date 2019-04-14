@@ -5,6 +5,7 @@ import { Translator } from 'src/app/utils/translator';
 import { MatDialog } from '@angular/material';
 import { EditorComponent } from '../editor/editor.component';
 import { Subscription } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
     selector: 'app-couriers',
@@ -34,7 +35,8 @@ export class CouriersComponent implements OnInit, OnDestroy {
 
     constructor(
         private courierService: CourierService,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        public afAuth: AngularFireAuth
     ) { }
 
     ngOnInit() {

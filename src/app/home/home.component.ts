@@ -15,6 +15,5 @@ export class HomeComponent implements OnInit {
     public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    
   }
 }

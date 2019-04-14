@@ -5,6 +5,7 @@ import { RecipientService } from 'src/app/services/data_services/recipient.servi
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EditorComponent } from '../editor/editor.component';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-recipients',
@@ -30,7 +31,8 @@ export class RecipientsComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private recipientService: RecipientService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    public afAuth: AngularFireAuth) {
   }
 
   ngOnInit() {

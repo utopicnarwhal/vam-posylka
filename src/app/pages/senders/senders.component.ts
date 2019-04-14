@@ -5,6 +5,7 @@ import { SenderService } from 'src/app/services/data_services/sender.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EditorComponent } from '../editor/editor.component';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-senders',
@@ -30,7 +31,8 @@ export class SendersComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private senderService: SenderService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    public afAuth: AngularFireAuth) {
   }
 
   ngOnInit() {
