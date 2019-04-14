@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UrlService } from '../services/url.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +10,11 @@ import { UrlService } from '../services/url.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public url: UrlService) { }
+  constructor(
+    public url: UrlService,
+    public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
+    
   }
 }

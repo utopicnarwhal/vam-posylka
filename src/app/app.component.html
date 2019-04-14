@@ -3,5 +3,7 @@
         <mat-icon>local_shipping</mat-icon>
     </button>
     Вам посылка
+    <div class="spacer"></div>
+    <span *ngIf="afAuth.user | async as user">{{ user.displayName }}</span>
 </mat-toolbar>
 <router-outlet></router-outlet>

@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, PipeTransform, Pipe } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -10,7 +11,7 @@ import {
     MatToolbarModule, MatTableModule, MatPaginatorModule, MatFormFieldModule,
     MatInputModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatPaginatorIntl,
     MatDialogModule, MatDatepickerModule, MatAutocompleteModule, MatDateFormats, MAT_DATE_LOCALE,
-    MAT_DATE_FORMATS, MatNativeDateModule, MatSelectModule,
+    MAT_DATE_FORMATS, MatNativeDateModule, MatSelectModule, MatCardModule,
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ import { EditorComponent } from './pages/editor/editor.component';
 import { Observable } from 'rxjs';
 import { DatepickerTimestampComponent } from './controls/datepicker-timestamp/datepicker-timestamp.component';
 import { FsLookupPickerComponent } from './controls/fs-lookup-picker/fs-lookup-picker.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export class CustomPaginator extends MatPaginatorIntl {
     constructor() {
@@ -78,6 +80,7 @@ const MY_FORMATS: MatDateFormats = {
         RefDocPipe,
         DatepickerTimestampComponent,
         FsLookupPickerComponent,
+        LoginComponent,
     ],
     imports: [
         BrowserModule,
@@ -97,8 +100,10 @@ const MY_FORMATS: MatDateFormats = {
         MatAutocompleteModule,
         MatNativeDateModule,
         MatSelectModule,
+        MatCardModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
+        AngularFireAuthModule,
     ],
     providers: [
         { provide: MatPaginatorIntl, useClass: CustomPaginator },

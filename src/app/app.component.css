@@ -3,6 +3,10 @@
     height: 100%;
 }
 
+.spacer {
+    flex: 1;
+}
+
 mat-toolbar {
     position: sticky;
     z-index: 1000;

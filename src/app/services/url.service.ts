@@ -31,4 +31,8 @@ export class UrlService {
   public goToTransport() {
     this.router.navigate(['transport']);
   }
+
+  public goToLogin() {
+    this.router.navigate(['login']);
+  }
 }
