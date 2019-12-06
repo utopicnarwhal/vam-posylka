@@ -19,22 +19,28 @@ export class LoginComponent implements OnInit, OnDestroy {
     public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.subscription = this.afAuth.user.subscribe(user => {
-      if (user) {
-        this.url.goToHome();
-      }
-    });
+    // this.subscription = this.afAuth.user.subscribe(user => {
+    //   if (user) {
+    //     this.url.goToHome();
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
   async adminLoginClick() {
     if (this.login && this.password) {
-      await this.afAuth.auth.signInWithEmailAndPassword(this.login, this.password).then(credentials =>
-        this.url.goToHome()
-      ).catch(reason => {
+      await this.afAuth.auth.signInWithEmailAndPassword(this.login, this.password).then(credentials => {
+        if (credentials.user.uid !== '8G6TPHuF7OYFxFsR7OSlCTmfuLk1') {
+          console.log('Вы не администратор');
+          this.login = '';
+          this.password = '';
+          return;
+        }
+        this.url.goToHome();
+      }).catch(reason => {
         console.log('Неправильный логин или пароль' + reason);
         this.login = '';
         this.password = '';
@@ -42,8 +48,21 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  async anonLoginClick() {
-    await this.afAuth.auth.signInAnonymously();
-    this.url.goToHome();
+  async operatorLoginClick() {
+    if (this.login && this.password) {
+      await this.afAuth.auth.signInWithEmailAndPassword(this.login, this.password).then(credentials => {
+        if (credentials.user.uid === '8G6TPHuF7OYFxFsR7OSlCTmfuLk1') {
+          console.log('Вы не оператор');
+          this.login = '';
+          this.password = '';
+          return;
+        }
+        this.url.goToHome();
+      }).catch(reason => {
+        console.log('Неправильный логин или пароль' + reason);
+        this.login = '';
+        this.password = '';
+      });
+    }
   }
 }

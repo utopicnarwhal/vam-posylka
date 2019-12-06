@@ -29,7 +29,7 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
         <button type="button" mat-icon-button (click)="openEditor(element)" *ngIf="afAuth.user | async as user"
-          [hidden]="user?.isAnonymous">
+          [hidden]="user?.uid == null || user?.uid != '8G6TPHuF7OYFxFsR7OSlCTmfuLk1'">
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -40,4 +40,5 @@
   </table>
 </div>
 <mat-paginator [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
-<button mat-raised-button type="button" color="primary" (click)="openEditor()" *ngIf="afAuth.user | async as user" [hidden]="user?.isAnonymous">Добавить транспорт</button>
+<button mat-raised-button type="button" color="primary" (click)="openEditor()" *ngIf="afAuth.user | async as user"
+  [hidden]="user?.uid == null || user?.uid != '8G6TPHuF7OYFxFsR7OSlCTmfuLk1'">Добавить транспорт</button>
